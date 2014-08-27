@@ -1,25 +1,53 @@
 <!doctype html>
 <html>
 <head>
-	<title>Paying MP3s with HTML5</title>
+	<title></title>
+	<script>
+		var player;
+
+		window.onload = function(){
+			document.getElementById('playBtn').addEventListener('click', playPlayer, false);
+			document.getElementById('pauseBtn').addEventListener('click', pausePlayer, false);
+			document.getElementById('stopBtn').addEventListener('click', stopPlayer, false);
+			player = document.getElementById('player');
+		}
+
+		function playPlayer(){
+			player.play();
+		}
+
+		function pausePlayer(){
+			player.pause();
+		}
+
+		function stopPlayer(){
+			player.pause();
+			// Because no stop method
+			player.currentTime = 0;
+		}
+	</script>
 </head>
 
 <body>
-<!--Audio Tag sauce 
-	http://www.youtube-mp3.org/
-	http://audio.online-convert.com/convert-to-ogg
--->
-<audio controls='controls'>
-	<source src='autumn.mp3' />
-	<!-- Different format
-	<source src='autumn.ogg' />
-	Other attributes:
-	loop='loop'
-	autostart='autostart'
-	preload='metadata'
+	<!--Audio Tag sauce 
+		http://www.youtube-mp3.org/
+		http://audio.online-convert.com/convert-to-ogg
 	-->
-</audio>
 
+	<audio id="player">
+		<source src='autumn.mp3' />
+		<!-- Different format
+		<source src='autumn.ogg' />
+		Other attributes:
+		loop='loop'
+		autostart='autostart'
+		preload='metadata'
+		-->
+	</audio>
+
+	<button id='playBtn'>Play</button>
+	<button id='pauseBtn'>Pause</button>
+	<button id='stopBtn'>Stop</button>
 
 </body>
 </html>
