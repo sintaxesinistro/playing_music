@@ -4,6 +4,8 @@
 	<title></title>
 	<script>
 		var player;
+		var intv;
+		var slider;
 
 		window.onload = function(){
 			document.getElementById('playBtn').addEventListener('click', playPlayer, false);
@@ -12,10 +14,33 @@
 			document.getElementById('volumeUp').addEventListener('click', volUp, false);
 			document.getElementById('volumeDown').addEventListener('click', volDown, false);
 			player = document.getElementById('player');
+			slider = document.getElementById('sliderTime');
+			slider.addEventListener('change', reposition, false);
+		}
+
+		function reposition(){
+			player.currentTime = slider.value;
 		}
 
 		function playPlayer(){
 			player.play();
+			intv = setInterval(update, 100);
+			slider.max = player.duration;
+		}
+
+		function update(){
+			document.getElementById('playerTime').innerHTML = millMin(player.currentTime);
+			slider.value = player.currentTime;
+		}
+
+		function millMin(seconds){
+			var numbMinutes = Math.floor((((seconds % 31536000) % 86400) % 3600) / 60);
+			var numbSeconds = (((seconds % 31536000) % 86400) % 3600) % 60;
+			if (numbSeconds >= 10){
+				return numbMinutes + ":" + Math.round(numbSeconds);
+			} else {
+				return numbMinutes + ":0" + Math.round(numbSeconds);
+			}
 		}
 
 		function pausePlayer(){
@@ -23,9 +48,10 @@
 		}
 
 		function stopPlayer(){
+			player.currentTime = 0;
 			player.pause();
 			// Because no stop method
-			player.currentTime = 0;
+			clearInterval(intv);
 		}
 
 		function volUp(){
@@ -68,9 +94,11 @@
 
 	<button id='playBtn'>Play</button>
 	<button id='pauseBtn'>Pause</button>
-	<button id='stopBtn'>Stop</button><br />
+	<button id='stopBtn'>Stop</button><br/>
 	<button id='volumeUp'>+</button>
 	<button id='volumeDown'>-</button>
+	<span id='playerTime'></span><br/>
+	<input id='sliderTime' type='range' min='0' value='0'/>
 
 </body>
 </html>
