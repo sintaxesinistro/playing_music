@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title></title>
+	<script src='playlist.js'></script>
 	<script>
 		var player;
 		var intv;
@@ -16,6 +17,7 @@
 			player = document.getElementById('player');
 			slider = document.getElementById('sliderTime');
 			slider.addEventListener('change', reposition, false);
+			playlist();
 		}
 
 		function reposition(){
@@ -63,6 +65,7 @@
 				player.volume = 1;
 			}
 		}
+
 		function volDown(){
 			if(player.volume > 0){
 				player.volume -= 0.1;
@@ -71,6 +74,25 @@
 			} else {
 				player.volume = 0;
 			}
+		}
+
+		function playlist(){
+			var parser = new DOMParser();
+			xmlDocument = parser.parseFromString(xml, "text/xml");
+			var elementsArray = xmlDocument.documentElement.getElementsByTagName('composition');
+			var arrayLength = elementsArray.length;
+			var display = "<table>";
+			for(var i=0; i<arrayLength; i++){
+				var title = elementsArray[i].getElementsByTagName('title')[0].firstChild.nodeValue;
+				var composer = elementsArray[i].getElementsByTagName('composer')[0].firstChild.nodeValue;
+				var time = elementsArray[i].getElementsByTagName('time')[0].firstChild.nodeValue;
+				var filename = elementsArray[i].getElementsByTagName('filename')[0].firstChild.nodeValue;
+				display += '<tr>';
+				display += ('<td>' + title + '</td><td>' + time + '</td>');
+				display += '</tr>'
+			}
+			display += '</table>';
+			document.getElementById('result').innerHTML = display;
 		}
 	</script>
 </head>
@@ -98,7 +120,7 @@
 	<button id='volumeUp'>+</button>
 	<button id='volumeDown'>-</button>
 	<span id='playerTime'></span><br/>
-	<input id='sliderTime' type='range' min='0' value='0'/>
-
+	<input id='sliderTime' type='range' min='0' value='0'/><br />
+	<div id='result'></div>
 </body>
 </html>
