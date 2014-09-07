@@ -11,13 +11,19 @@
 				var elementsArray = xmlDocument.documentElement.getElementsByTagName('composition');
 				// console.log(elementsArray);
 				var arrayLength = elementsArray.length; // Performance sentinel
+				var display = "<table>";
 				for(var i=0; i<arrayLength; i++){
 					var title = elementsArray[i].getElementsByTagName('title')[0].firstChild.nodeValue;
 					var composer = elementsArray[i].getElementsByTagName('composer')[0].firstChild.nodeValue;
 					var time = elementsArray[i].getElementsByTagName('time')[0].firstChild.nodeValue;
 					var filename = elementsArray[i].getElementsByTagName('filename')[0].firstChild.nodeValue;
 					// console.log(filename + " " + time);
+					display += '<tr>';
+					display += ('<td>' + title + '</td><td>' + composer + '</td><td>' + time + '</td><td>' + filename + '</td>');
+					display += '</tr>'
 				}
+				display += '</table>';
+				document.getElementById('result').innerHTML = display;
 			}
 		</script>
 	</head>
