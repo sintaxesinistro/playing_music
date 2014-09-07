@@ -88,11 +88,16 @@
 				var time = elementsArray[i].getElementsByTagName('time')[0].firstChild.nodeValue;
 				var filename = elementsArray[i].getElementsByTagName('filename')[0].firstChild.nodeValue;
 				display += '<tr>';
-				display += ('<td>' + title + '</td><td>' + time + '</td>');
+				display += ("<td onclick='selectSong(\"" + filename + "\")'>" + title + '</td><td>' + time + '</td>');
 				display += '</tr>'
 			}
 			display += '</table>';
 			document.getElementById('result').innerHTML = display;
+		}
+
+		function selectSong(fn){
+			document.getElementById('player').src = fn;
+			playPlayer();
 		}
 	</script>
 </head>
@@ -104,8 +109,9 @@
 	-->
 
 	<audio id="player">
+		<!-- 
 		<source src='autumn.mp3' />
-		<!-- Different format
+		Different format
 		<source src='autumn.ogg' />
 		Other attributes:
 		loop='loop'
