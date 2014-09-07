@@ -1,33 +1,27 @@
 <?xml version='1.0'?>
-<music>
+<music> <!-- Root Node -->
 	<composition>
-		<title></title>
-		<composer></composer>
-		<time></time>
-		<filename></filename>
+		<title>Summer (Live)</title>
+		<composer>Antonio Vivaldi</composer>
+		<time>10:50</time>
+		<filename>summer.mp3</filename>
 	</composition>
 	<composition>
-		<title></title>
-		<composer></composer>
-		<time></time>
-		<filename></filename>
+		<title>Autumn</title>
+		<composer>Antonio Vivaldi</composer>
+		<time>10:43</time>
+		<filename>autumn.mp3</filename>
 	</composition>
 	<composition>
-		<title></title>
-		<composer></composer>
-		<time></time>
-		<filename></filename>
+		<title>Winter</title>
+		<composer>Antonio Vivaldi</composer>
+		<time>09:22</time>
+		<filename>winter.mp3</filename>
 	</composition>
 	<composition>
-		<title></title>
-		<composer></composer>
-		<time></time>
-		<filename></filename>
-	</composition>
-	<composition>
-		<title></title>
-		<composer></composer>
-		<time></time>
-		<filename></filename>
+		<title>Spring</title>
+		<composer>Antonio Vivaldi</composer>
+		<time>10:38</time>
+		<filename>spring.mp3</filename>
 	</composition>
 </music>

@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Playlist</title>
+		<script src='playlist.js'></script>
+		<script>
+			window.onload = function(){
+				var parser = new DOMParser();
+				xmlDocument = parser.parseFromString(xml, 'text/xml');
+				console.log(xmlDocument);
+			}
+	</head>
+	<body>
+		<div id='result'></div>
+	</body>
+</html>
