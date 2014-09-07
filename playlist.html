@@ -6,9 +6,20 @@
 		<script>
 			window.onload = function(){
 				var parser = new DOMParser();
-				xmlDocument = parser.parseFromString(xml, 'text/xml');
-				console.log(xmlDocument);
+				xmlDocument = parser.parseFromString(xml, "text/xml");
+				// console.log(xmlDocument);
+				var elementsArray = xmlDocument.documentElement.getElementsByTagName('composition');
+				// console.log(elementsArray);
+				var arrayLength = elementsArray.length; // Performance sentinel
+				for(var i=0; i<arrayLength; i++){
+					var title = elementsArray[i].getElementsByTagName('title')[0].firstChild.nodeValue;
+					var composer = elementsArray[i].getElementsByTagName('composer')[0].firstChild.nodeValue;
+					var time = elementsArray[i].getElementsByTagName('time')[0].firstChild.nodeValue;
+					var filename = elementsArray[i].getElementsByTagName('filename')[0].firstChild.nodeValue;
+					// console.log(filename + " " + time);
+				}
 			}
+		</script>
 	</head>
 	<body>
 		<div id='result'></div>
